@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estilo & Arte | Empleados</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+            margin: auto;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .login-header h2 {
+            font-weight: bold;
+            color: #4b6cb7; /* azul-morado */
+        }
+
+        .btn-primary {
+            background-color: #6a11cb; /* morado */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5326a7;
+        }
+
+        .btn-outline-secondary {
+            border-color: #6a11cb;
+            color: #6a11cb;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #6a11cb;
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .fa-cut {
+            color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+
+	<div class="container">
+	    <div class="card mx-auto m-4" style="max-width: 700px;">
+	        <div class="card-header text-center">
+	            <h4><i class="bi bi-shield-fill-plus"></i> Registrar Pago</h4>
+	        </div>
+	        <div class="card-body ">
+				<form th:action="@{/pagarcita/{id}(id=${cita.id})}" th:object="${cita}" method="post">
+				                <input type="hidden" th:field="*{id}"/>
+
+				        
+								<label for="pagoSelect">Seleccione el pago:</label>
+								    <select id="pagoSelect" th:field="*{pago.id}" name="pagoId">
+								        <option th:each="pago : ${pagos}" 
+								                th:value="${pago.id}" 
+								                th:text="${pago.titulo}">Pago</option>
+								    </select>
+					
+			  
+				
+				
+					
+	
+					
+					
+	                <div class="d-flex justify-content-between mt-4">
+	                    <a href="/vercita" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+	                    <button type="submit" class="btn btn-primary">
+	                        <i class="bi bi-save-fill"></i> Guardar Pago
+	                    </button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+	
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+</html>

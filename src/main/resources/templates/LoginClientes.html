@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estilo & Arte | Iniciar Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* morado a azul */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .login-header h2 {
+            font-weight: bold;
+            color: #4b6cb7; /* azul-morado */
+        }
+
+        .btn-primary {
+            background-color: #6a11cb; /* morado */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5326a7;
+        }
+
+        .btn-outline-secondary {
+            border-color: #6a11cb;
+            color: #6a11cb;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #6a11cb;
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .fa-cut {
+            color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-cut fa-3x mb-3"></i>
+            <h2>Bienvenido a Estilo & Arte</h2>
+            <p class="text-muted">Inicia sesión para gestionar tus servicios</p>
+        </div>
+
+		<form action="validarlogin1" method="post">
+		    <div class="mb-3">
+		        <label for="correo" class="form-label">Usuario</label>
+		        <input type="text" id="correo" name="correo" class="form-control" placeholder="Ej. maria123" required>
+		    </div>
+
+		    <div class="mb-3">
+		        <label for="contrasena" class="form-label">Contraseña</label>
+		        <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="********" required>
+		    </div>
+
+		    <div class="d-grid gap-2 mt-4">
+		        <button type="submit" class="btn btn-primary">Ingresar</button>
+		        <a href="registrarcliente" class="btn btn-outline-secondary">Registrarse</a>
+				<a href="vercliente" class="btn btn-outline-secondary">Ver Clientes</a>
+				<a href="index" class="btn btn-outline-secondary">Regresar</a>
+		        <button type="reset" class="btn btn-danger">Limpiar</button>
+		    </div>
+		</form>
+
+        <div class="footer-text mt-4">
+            <small>&copy; 2025 Estilo & Arte - Tu estilo, nuestra pasión</small>
+        </div>
+    </div>
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
