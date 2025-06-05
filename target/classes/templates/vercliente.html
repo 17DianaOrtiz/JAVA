@@ -1,0 +1,129 @@
+
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estilo & Arte | Clintes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+            margin: auto;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .login-header h2 {
+            font-weight: bold;
+            color: #4b6cb7; /* azul-morado */
+        }
+
+        .btn-primary {
+            background-color: #6a11cb; /* morado */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5326a7;
+        }
+
+        .btn-outline-secondary {
+            border-color: #6a11cb;
+            color: #6a11cb;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #6a11cb;
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 8px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .fa-cut {
+            color: #6a11cb;
+        }
+		
+	
+		
+		.btn-outline-light:hover {
+		    background-color: #ffffff;
+		    color: #2c003e;
+		    border-color: #ffffff;
+		}
+    </style>
+</head>
+<body>
+
+	<div class="container mt-5">
+	    <div class="text-center mb-4">
+	        <h2 class="fw-bold text-light">💜 Listado de Clientes Registrados</h2>
+	        <p class="text-muted">Clientes que forman parte de nuestra comunidad de belleza</p>
+	    </div>
+
+	    <div class="table-responsive rounded shadow">
+			<table class="table table-striped table-bordered bg-white rounded shadow">
+		        <thead class="table-purple text-white text-center">
+		            <tr>
+		                <th>ID</th>
+		                <th>Correo</th>
+		                <th>Nombre</th>
+		                <th>Teléfono</th>
+		                <th>Contraseña</th>
+		                <th>Rol</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="cliente : ${listaCliente}">
+		                <td th:text="${cliente.id}"></td>
+		                <td th:text="${cliente.correo}"></td>
+		                <td th:text="${cliente.nombre}"></td>
+		                <td th:text="${cliente.telefono}"></td>
+		                <td th:text="${cliente.contrasena}"></td>
+		                <td th:text="${cliente.rol}"></td>
+		            </tr>
+		        </tbody>
+		    </table>
+	    </div>
+
+	    <div class="d-flex justify-content-end mt-4">
+	        <a href="/LoginClientes" class="btn btn-outline-light">
+	            <i class="bi bi-arrow-left"></i> Volver
+	        </a>
+	    </div>
+	</div>
+	
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+</html>
