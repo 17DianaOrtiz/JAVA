@@ -2,122 +2,183 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Estilo & Arte | Empleados</title>
+    <title>Estilo & Arte | Panel de Empleados</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #1a1a1a;
+            --crema: #fdfaf5;
+        }
+
         body {
-            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--crema);
+            font-family: 'Poppins', sans-serif;
+            color: var(--oscuro);
         }
 
-        .login-card {
-            background-color: #ffffff;
+        /* Títulos Luxury */
+        .titulo-seccion {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--oscuro);
+            margin-top: 50px;
+        }
+
+        .subtitulo {
+            color: var(--dorado);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Card de la Tabla */
+        .custom-table-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            margin: auto;
+            margin-top: 30px;
+            border: 1px solid rgba(184, 150, 85, 0.1);
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 25px;
+        /* Estilo de Tabla */
+        .table thead th {
+            background-color: transparent;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            border-bottom: 2px solid var(--crema);
+            padding: 15px;
         }
 
-        .login-header h2 {
-            font-weight: bold;
-            color: #4b6cb7; /* azul-morado */
+        .table tbody tr {
+            transition: all 0.3s ease;
         }
 
-        .btn-primary {
-            background-color: #6a11cb; /* morado */
-            border: none;
+        .table tbody tr:hover {
+            background-color: #fcfbf8;
         }
 
-        .btn-primary:hover {
-            background-color: #5326a7;
+        .table tbody td {
+            padding: 15px;
+            vertical-align: middle;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f8f9fa;
         }
 
-        .btn-outline-secondary {
-            border-color: #6a11cb;
-            color: #6a11cb;
-        }
-
-        .btn-outline-secondary:hover {
-            background-color: #6a11cb;
+		
+        /* Detalles específicos */
+        .badge-rol {
+            background: var(--oscuro);
             color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 400;
         }
 
-        .form-control {
-            border-radius: 8px;
+        .salario-text {
+            color: #28a745;
+            font-weight: 600;
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
+        .horario-badge {
+            background: var(--crema);
+            color: var(--dorado);
+            border: 1px solid var(--dorado);
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
         }
 
-        .fa-cut {
-            color: #6a11cb;
+        /* Botón Volver */
+        .btn-volver {
+            background-color: var(--oscuro);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-volver:hover {
+            background-color: var(--dorado);
+            color: white;
+            transform: translateX(-5px);
         }
     </style>
 </head>
 <body>
 
-	<div class="container mt-5">
-	    <div class="text-center mb-4">
-	        <h2 class="fw-bold text-pink">💇‍♀️ Empleados de la Peluquería</h2>
-	        <p class="text-muted">Consulta aquí todos los empleados registrados con sus respectivos datos.</p>
-	    </div>
+    <div class="container pb-5">
+        <div class="text-center">
+            <h2 class="titulo-seccion">Staff Profesional</h2>
+            <p class="subtitulo">Equipo de Estilo & Arte</p>
+            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background: var(--dorado);"></div>
+        </div>
 
-	    <div class="table-responsive shadow rounded border border-2 border-pink">
-	        <table class="table table-hover table-bordered align-middle">
-	            <thead class="table-light text-center text-pink">
-	                <tr class="fw-semibold">
-	                    <th>ID</th>
-	                    <th>Correo</th>
-	                    <th>Horario</th>
-	                    <th>Nombre</th>
-	                    <th>Rol</th>
-	                    <th>Salario</th>
-	                    <th>Teléfono</th>
-	                    <th>Contraseña</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-	                <tr th:each="empleado : ${listaEmpleado}">
-	                    <td th:text="${empleado.id}"></td>
-	                    <td th:text="${empleado.correo}"></td>
-	                    <td th:text="${empleado.horario}"></td>
-	                    <td th:text="${empleado.nombre}"></td>
-	                    <td th:text="${empleado.rol}"></td>
-	                    <td th:text="${empleado.salario}"></td>
-	                    <td th:text="${empleado.telefono}"></td>
-	                    <td th:text="${empleado.contrasena}"></td>
-	                </tr>
-	            </tbody>
-	        </table>
-	    </div>
+        <div class="custom-table-card shadow-sm">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cargo / Rol</th>
+                            <th>Contacto</th>
+                            <th>Horario</th>
+                            <th>Salario</th>
+                            <th>Seguridad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="empleado : ${listaEmpleado}" class="text-center">
+                            <td class="fw-bold text-muted" th:text="${empleado.id}"></td>
+                            <td class="fw-semibold" th:text="${empleado.nombre}"></td>
+                            <td>
+                                <span class="badge-rol" th:text="${empleado.rol}"></span>
+                            </td>
+                            <td>
+                                <div class="small"><i class="bi bi-envelope me-1 text-muted"></i> <span th:text="${empleado.correo}"></span></div>
+                                <div class="small"><i class="bi bi-telephone me-1 text-muted"></i> <span th:text="${empleado.telefono}"></span></div>
+                            </td>
+                            <td>
+                                <span class="horario-badge">
+                                    <i class="bi bi-clock me-1"></i> <span th:text="${empleado.horario}"></span>
+                                </span>
+                            </td>
+                            <td class="salario-text">
+                                $<span th:text="${empleado.salario}"></span>
+                            </td>
+                            <td class="text-muted small">
+                                <i class="bi bi-shield-lock me-1"></i><span th:text="${empleado.contrasena}"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-	    <div class="d-flex justify-content-end mt-4">
-	        <a href="/LoginEmpleados" class="btn btn-outline-pink">
-	            <i class="bi bi-arrow-left"></i> Volver
-	        </a>
-	    </div>
-	</div>
-	
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <div class="d-flex justify-content-center mt-5">
+            <a href="/LoginEmpleados" class="btn-volver shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i> Volver al Login
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -2,115 +2,186 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Estilo & Arte | Empleados</title>
+    <title>Estilo & Arte | Vincular Pago</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-        body {
-            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #1a1a1a;
+            --crema: #fdfaf5;
         }
 
-        .login-card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
+        body {
+            background-color: var(--crema);
+            font-family: 'Poppins', sans-serif;
+            color: var(--oscuro);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            padding: 40px 15px;
+        }
+
+        /* Card de Vinculación */
+        .link-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.08);
+            border: none;
+            overflow: hidden;
+            max-width: 550px;
             margin: auto;
         }
 
-        .login-header {
+        .card-header-luxury {
+            background-color: var(--oscuro);
+            padding: 30px;
             text-align: center;
-            margin-bottom: 25px;
+            border-bottom: 4px solid var(--dorado);
         }
 
-        .login-header h2 {
-            font-weight: bold;
-            color: #4b6cb7; /* azul-morado */
-        }
-
-        .btn-primary {
-            background-color: #6a11cb; /* morado */
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #5326a7;
-        }
-
-        .btn-outline-secondary {
-            border-color: #6a11cb;
-            color: #6a11cb;
-        }
-
-        .btn-outline-secondary:hover {
-            background-color: #6a11cb;
+        .card-header-luxury h4 {
             color: white;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            letter-spacing: 1px;
         }
 
-        .form-control {
-            border-radius: 8px;
+        .card-body {
+            padding: 40px;
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
+        /* Estilo del Select y Labels */
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--oscuro);
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .fa-cut {
-            color: #6a11cb;
+        .input-group-text {
+            background-color: transparent;
+            color: var(--dorado);
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .form-select {
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+            padding: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .form-select:focus {
+            border-color: var(--dorado);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        /* Botones */
+        .btn-save {
+            background-color: var(--oscuro);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-save:hover {
+            background-color: var(--dorado);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            color: var(--dorado);
+        }
+
+        /* Info de la Cita */
+        .appointment-info {
+            background-color: var(--crema);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--dorado);
         }
     </style>
 </head>
 <body>
 
-	<div class="container">
-	    <div class="card mx-auto m-4" style="max-width: 700px;">
-	        <div class="card-header text-center">
-	            <h4><i class="bi bi-shield-fill-plus"></i> Registrar Pago</h4>
-	        </div>
-	        <div class="card-body ">
-				<form th:action="@{/pagarcita/{id}(id=${cita.id})}" th:object="${cita}" method="post">
-				                <input type="hidden" th:field="*{id}"/>
+    <div class="container">
+        <div class="link-card">
+            <div class="card-header-luxury">
+                <i class="bi bi-link-45deg fa-2x mb-2" style="color: var(--dorado);"></i>
+                <h4>Finalizar Servicio</h4>
+                <p class="text-white-50 small mb-0">Vincular comprobante de pago a la cita</p>
+            </div>
 
-				        
-								<label for="pagoSelect">Seleccione el pago:</label>
-								    <select id="pagoSelect" th:field="*{pago.id}" name="pagoId">
-								        <option th:each="pago : ${pagos}" 
-								                th:value="${pago.id}" 
-								                th:text="${pago.titulo}">Pago</option>
-								    </select>
-					
-			  
-				
-				
-					
-	
-					
-					
-	                <div class="d-flex justify-content-between mt-4">
-	                    <a href="/vercita" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
-	                    <button type="submit" class="btn btn-primary">
-	                        <i class="bi bi-save-fill"></i> Guardar Pago
-	                    </button>
-	                </div>
-	            </form>
-	        </div>
-	    </div>
-	</div>
-	
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            <div class="card-body">
+                <div class="appointment-info">
+                    <small class="text-muted d-block">ID DE CITA:</small>
+                    <span class="fw-bold" th:text="${cita.id}">001</span>
+                </div>
+
+                <form th:action="@{/pagarcita/{id}(id=${cita.id})}" th:object="${cita}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="mb-4">
+                        <label for="pagoSelect" class="form-label">Seleccione el Registro de Pago</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-wallet2"></i></span>
+                            <select id="pagoSelect" th:field="*{pago.id}" name="pagoId" class="form-select" required>
+                                <option value="" disabled selected>--- Elegir pago registrado ---</option>
+                                <option th:each="pago : ${pagos}" 
+                                        th:value="${pago.id}" 
+                                        th:text="${pago.titulo + ' - $' + pago.valor}">Pago</option>
+                            </select>
+                        </div>
+                        <small class="text-muted mt-2 d-block">
+                            Solo aparecen pagos previamente registrados en el sistema.
+                        </small>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-5">
+                        <a href="/vercita" class="btn-back">
+                            <i class="bi bi-arrow-left me-2"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-save shadow-sm">
+                            <i class="bi bi-check-circle me-2"></i> Confirmar Pago
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <small class="text-muted">&copy; 2026 ESTILO & ARTE - GESTIÓN INTERNA</small>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -2,238 +2,290 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Estilo & Arte | Pagos</title>
+    <title>Estilo & Arte | Gestión de Pagos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #1a1a1a;
+            --crema: #fdfaf5;
+        }
+
         body {
-            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--crema);
+            font-family: 'Poppins', sans-serif;
+            color: var(--oscuro);
         }
 
-        .login-card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            margin: auto;
+        /* Navbar Luxury */
+		.navbar {
+            background-color: var(--oscuro) !important;
+            padding: 15px 0;
+            border-bottom: 3px solid var(--dorado);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 25px;
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            color: white !important;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
         }
 
-        .login-header h2 {
-            font-weight: bold;
-            color: #4b6cb7; /* azul-morado */
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 400;
+            transition: 0.3s;
+            padding: 10px 15px !important;
         }
 
-        .btn-primary {
-            background-color: #6a11cb; /* morado */
-            border: none;
+        .nav-link:hover {
+            color: var(--dorado) !important;
+        }
+		.dropdown-menu {
+            background-color: var(--oscuro);
+            border: 1px solid var(--dorado);
+            border-radius: 10px;
         }
 
-        .btn-primary:hover {
-            background-color: #5326a7;
-        }
-
-        .btn-outline-secondary {
-            border-color: #6a11cb;
-            color: #6a11cb;
-        }
-
-        .btn-outline-secondary:hover {
-            background-color: #6a11cb;
+        .dropdown-item {
             color: white;
+            font-size: 0.9rem;
+            padding: 10px 20px;
         }
 
-        .form-control {
-            border-radius: 8px;
-        }
-
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        .fa-cut {
-            color: #6a11cb;
+        .dropdown-item:hover {
+            background-color: var(--dorado);
+            color: var(--oscuro);
         }
 		
-		.titulo-peluqueria {
-		  text-align: center;
-		  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		  font-weight: 700;
-		  font-size: 2.8rem;
-		  color: #f0e6ff; /* un lila muy claro para buen contraste */
-		  margin: 40px 0 30px;
-		  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-		}
+		.btn-logout-nav {
+           background-color: transparent;
+           border: 1px solid #ff4d4d;
+           color: #ff4d4d;
+           border-radius: 8px;
+           padding: 5px 15px;
+           font-size: 0.85rem;
+           transition: 0.3s;
+       }
 
-		.nombre-marca {
-		  color: #d18cff; /* lila vibrante para destacar */
-		  font-style: italic;
-		  letter-spacing: 2px;
-		  text-shadow: 3px 3px 8px rgba(129, 39, 151, 0.8);
-		}
+       .btn-logout-nav:hover {
+           background-color: #ff4d4d;
+           color: white;
+       }
+
+        /* Títulos */
+        .titulo-seccion {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--oscuro);
+            margin-top: 40px;
+        }
+
+        /* Estilo de Tabla y Card */
+        .custom-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        .table thead th {
+            background-color: transparent;
+            color: var(--dorado);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--crema);
+            padding: 15px;
+        }
+
+        .table tbody td {
+            padding: 18px 15px;
+            vertical-align: middle;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        /* Botones */
+        .btn-nuevo-pago {
+            background-color: var(--oscuro);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-nuevo-pago:hover {
+            background-color: var(--dorado);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-action {
+            width: 35px;
+            height: 35px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .valor-pago {
+            color: #28a745;
+            font-weight: 600;
+            background: #f0f9f2;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .metodo-badge {
+            background-color: var(--crema);
+            color: var(--oscuro);
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            border: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
-	
-	<div class=" container"> 
-			<header class="text-center m-4">
-				<h2 class="titulo-peluqueria">
-				  <span class="nombre-marca">Estilo & Arte</span>
-				</h2>
-			</header>
-		</div>	
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(205, 232, 252);">
-	    <div class="container-fluid">
-	        <a class="navbar-brand fw-bold ms-4" href="PaginaPrincipal">Estilo & Arte</a>
-			
-			
+	<nav class="navbar navbar-expand-lg">
+	       <div class="container">
+	           <a class="navbar-brand fw-bold" href="#">
+	               <i class="fas fa-crown me-2" style="color: var(--dorado);"></i>ESTILO & ARTE
+	           </a>
+	           
+	           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" style="filter: invert(1);">
+	               <span class="navbar-toggler-icon"></span>
+	           </button>
 
-	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-	                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-			
-			
+	           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	               <ul class="navbar-nav ms-auto align-items-center">
+	                   
+	                   <th:block th:if="${session.cliente != null}">
+	                       <li class="nav-item"><a class="nav-link" href="/PaginaPrincipal">Inicio</a></li>
+	                       <li class="nav-item"><a class="nav-link" href="vercita">Gestionar Citas</a></li>
+	                       <li class="nav-item"><a class="nav-link" href="verservicio">Servicios</a></li>
+	                       <li class="nav-item ms-lg-3">
+	                           <form th:action="@{/logoutCliente}" method="get">
+	                               <button type="submit" class="btn btn-logout-nav">Cerrar Sesión</button>
+	                           </form>
+	                       </li>
+	                   </th:block>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			    <ul class="navbar-nav d-flex flex-grow-1 justify-content-between align-items-center mb-2 mb-lg-0">
-					
-					<!-- Ítems visibles solo para clientes -->
-			        <div th:if="${session.cliente != null}" class="d-flex flex-grow-1 justify-content-around w-100">
-			            <li class="nav-item">
-			                <a class="nav-link" href="/PaginaPrincipal">Inicio</a>
-			            </li>
-			            <li class="nav-item">
-			                <a class="nav-link" href="vercita">Gestionar Citas</a>
-			            </li>
-						<li class="nav-item">
-			                <a class="nav-link" href="verservicio">Conocer Servicios</a>
-			            </li>
-			            <li class="nav-item">
-			                <form th:action="@{/logoutCliente}" method="get">
-			                    <button type="submit" class="btn  btn-danger">Cerrar sesión</button>
-			                </form>
-			            </li>
-			        </div>
+	                   <th:block th:if="${session.empleado != null}">
+	                       <li class="nav-item"><a class="nav-link" href="/PaginaPrincipal">Inicio</a></li>
+	                       
+	                       <li class="nav-item" th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente'}">
+	                           <a class="nav-link" href="verservicio">Servicios</a>
+	                       </li>
 
-			        <!-- Ítems visibles solo para empleados -->
-			        <div th:if="${session.empleado != null}" class="d-flex flex-grow-1 justify-content-around w-100">
-			            <li class="nav-item">
-			                <a class="nav-link" href="/PaginaPrincipal">Inicio</a>
-			            </li>
+	                       <li class="nav-item dropdown" th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente' or session.empleado.rol == 'Recepcionista'}">
+	                           <a class="nav-link dropdown-toggle" href="#" id="dropUser" role="button" data-bs-toggle="dropdown">Usuarios</a>
+	                           <ul class="dropdown-menu">
+	                               <li><a class="dropdown-item" href="listarcliente">Clientes</a></li>
+	                               <li th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente'}">
+	                                   <a class="dropdown-item" href="listarempleado">Empleados</a>
+	                               </li>
+	                           </ul>
+	                       </li>
 
-			            <li class="nav-item" th:if="${session.empleado.rol == 'Administrador'or session.empleado.rol == 'Gerente'}">
-			                <a class="nav-link" href="verservicio">Gestionar Servicios</a>
-			            </li>
+	                       <li class="nav-item" th:if="${session.empleado.rol != 'Cliente'}"> <a class="nav-link" href="vercita">Citas</a>
+	                       </li>
 
-			            <li class="nav-item dropdown"
-			                th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente' or session.empleado.rol == 'Recepcionista'}">
-			                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-			                   data-bs-toggle="dropdown" aria-expanded="false">
-			                    Gestionar Usuarios
-			                </a>
-			                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente' or session.empleado.rol == 'Recepcionista'}">
-						           <a class="dropdown-item" href="listarcliente">Clientes</a>
-						       </li>
-						       
-						       <!-- Solo visible para Administrador y Gerente -->
-						       <li th:if="${session.empleado.rol == 'Administrador' or session.empleado.rol == 'Gerente'}">
-						           <a class="dropdown-item" href="listarempleado">Empleados</a>
-						       </li>
-			                </ul>
-			            </li>
+	                       <li class="nav-item" th:if="${session.empleado.rol == 'Gerente' or session.empleado.rol == 'Administrador' or session.empleado.rol == 'Recepcionista'}">
+	                           <a class="nav-link" href="verpago">Pagos</a>
+	                       </li>
 
-			            <li class="nav-item"
-			                th:if="${session.empleado.rol == 'Recepcionista' or session.empleado.rol == 'Administrador'or session.empleado.rol == 'Gerente' or session.empleado.rol == 'Estilista'}">
-			                <a class="nav-link" href="vercita">Gestionar Citas</a>
-			            </li>
+	                       <li class="nav-item ms-lg-3">
+	                           <form th:action="@{/logoutEmpleado}" method="get">
+	                               <button type="submit" class="btn btn-logout-nav">Cerrar Sesión</button>
+	                           </form>
+	                       </li>
+	                   </th:block>
+	               </ul>
+	           </div>
+	       </div>
+	   </nav>
 
-			            <li class="nav-item" th:if="${session.empleado.rol == 'Gerente' or session.empleado.rol == 'Administrador' or session.empleado.rol == 'Recepcionista'}">
-			                <a class="nav-link" href="verpago">Gestionar Pagos</a>
-			            </li>
+    <div class="container pb-5">
+        <header class="text-center">
+            <h2 class="titulo-seccion">Historial Financiero</h2>
+            <p class="text-muted small text-uppercase letter-spacing-2">Registro General de Pagos</p>
+            <div class="mx-auto" style="width: 50px; height: 3px; background: var(--dorado); margin-bottom: 30px;"></div>
+        </header>
 
-			            <li class="nav-item">
-			                <form th:action="@{/logoutEmpleado}" method="get">
-			                    <button type="submit" class="btn  btn-danger">Cerrar sesión</button>
-			                </form>
-			            </li>
-			        </div>
-			    </ul>
-			</div>
-	    </div>
-	</nav>
+        <div class="mb-4" th:if="${session.empleado.rol != 'Gerente'}">
+            <a href="/formpago" class="btn btn-nuevo-pago shadow-sm">
+                <i class="bi bi-plus-lg me-2"></i> Registrar Nuevo Pago
+            </a>
+        </div>
 
-	<div class="container mt-4">
-	    <h2 class="mb-4 text-center text-light fw-bold">💳 Historial de Pagos</h2>
+        <div class="custom-card shadow-sm">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Descripción / Título</th>
+                            <th>Método</th>
+                            <th>Fecha</th>
+                            <th>Monto Total</th>
+                            <th th:if="${session.empleado.rol != 'Gerente'}">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pago : ${listaPago}" class="text-center">
+                            <td class="text-muted small" th:text="${pago.id}"></td>
+                            <td class="fw-semibold" th:text="${pago.titulo}"></td>
+                            <td>
+                                <span class="metodo-badge" th:text="${pago.metodoPago}"></span>
+                            </td>
+                            <td>
+                                <i class="bi bi-calendar3 me-2 text-muted"></i>
+                                <span th:text="${pago.fecha}"></span>
+                            </td>
+                            <td>
+                                <span class="valor-pago" th:text="'$' + ${pago.valor}"></span>
+                            </td>
+                            
+                            <td th:if="${session.empleado.rol != 'Gerente'}">
+                                <a th:href="@{/editarpago/{id}(id=${pago.id})}" class="btn btn-warning btn-action text-white me-1">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
 
+                                <a th:if="${session.empleado.rol == 'Administrador'}"
+                                   th:href="@{/eliminarpago/{id}(id=${pago.id})}" class="btn btn-danger btn-action"
+                                   onclick="return confirm('¿Está seguro de eliminar este registro contable?');">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-	<div class="mb-3">
-		        <a th:if="${session.empleado.rol != 'Gerente' }"
-					href="/formpago" class="btn btn-primary">
-		            <i class="bi bi-plus-circle"></i> Nuevo Pago
-		        </a>
-		    </div>
-		
-	
-	
-			<table class="table table-striped table-bordered bg-white rounded shadow">
-		        <thead class="text-center">
-		            <tr>
-		                <th>ID</th>
-		                <th>Título</th>
-		                <th>Método de Pago</th>
-		                <th>Fecha</th>
-		                <th>Valor</th>
-		                <th th:if="${session.empleado.rol != 'Gerente'}">Acción</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		            <tr th:each="pago : ${listaPago}">
-		                <td th:text="${pago.id}"></td>
-		                <td th:text="${pago.titulo}"></td>
-		                <td th:text="${pago.metodoPago}"></td>
-		                <td th:text="${pago.fecha}"></td>
-		                <td th:text="${pago.valor}"></td>
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="/PaginaPrincipal" class="text-muted text-decoration-none small">
+                <i class="bi bi-arrow-left me-1"></i> Panel Principal
+            </a>
+            <small class="text-muted fst-italic">Confidencial - Solo personal autorizado</small>
+        </div>
+    </div>
 
-		                <td th:if="${session.empleado.rol != 'Gerente'}" class="text-center">
-		                    <a th:href="@{/editarpago/{id}(id=${pago.id})}" class="btn btn-warning btn-sm me-2">
-		                        <i class="bi bi-pencil-square"></i> Editar
-		                    </a>
-
-		                    <a th:if="${session.empleado.rol == 'Administrador'}"
-		                       th:href="@{/eliminarpago/{id}(id=${pago.id})}" class="btn btn-danger btn-sm"
-		                       onclick="return confirm('¿Estás seguro de eliminar este pago?');">
-		                        <i class="bi bi-trash"></i> Eliminar
-		                    </a>
-		                </td>
-		            </tr>
-		        </tbody>
-		    </table>
-		
-		<a href="/PaginaPrincipal" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
-
-</div>
-	
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

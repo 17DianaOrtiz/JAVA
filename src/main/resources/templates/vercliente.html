@@ -4,126 +4,183 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Estilo & Arte | Clintes</title>
+    <title>Estilo & Arte | Comunidad de Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #1a1a1a;
+            --crema: #fdfaf5;
+        }
+
         body {
-            background: linear-gradient(to right, rgb(159, 86, 241), rgb(94, 153, 253)); /* morado a azul */
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--crema);
+            font-family: 'Poppins', sans-serif;
+            color: var(--oscuro);
         }
 
-        .login-card {
-            background-color: #ffffff;
+        /* Títulos Luxury */
+        .titulo-seccion {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--oscuro);
+            margin-top: 50px;
+        }
+
+        .subtitulo {
+            color: var(--dorado);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Card de la Tabla */
+        .custom-table-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
-            margin: auto;
+            margin-top: 30px;
+            border: 1px solid rgba(184, 150, 85, 0.1);
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 25px;
+        /* Estilo de Tabla */
+        .table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
         }
 
-        .login-header h2 {
-            font-weight: bold;
-            color: #4b6cb7; /* azul-morado */
-        }
-
-        .btn-primary {
-            background-color: #6a11cb; /* morado */
+        .table thead th {
+            background-color: transparent;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
             border: none;
+            padding: 15px;
         }
 
-        .btn-primary:hover {
-            background-color: #5326a7;
+        .table tbody tr {
+            background-color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        .btn-outline-secondary {
-            border-color: #6a11cb;
-            color: #6a11cb;
+        .table tbody tr:hover {
+            transform: scale(1.01);
+            background-color: #fcfbf8;
+            box-shadow: 0 5px 15px rgba(184, 150, 85, 0.1);
         }
 
-        .btn-outline-secondary:hover {
-            background-color: #6a11cb;
+        .table tbody td {
+            padding: 20px 15px;
+            border: none;
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        .table tbody td:first-child {
+            border-radius: 10px 0 0 10px;
+            font-weight: bold;
+            color: var(--dorado);
+        }
+
+        .table tbody td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Botón Volver */
+        .btn-volver {
+            background-color: var(--oscuro);
             color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
         }
 
-        .form-control {
-            border-radius: 8px;
+        .btn-volver:hover {
+            background-color: var(--dorado);
+            color: white;
+            transform: translateX(-5px);
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
+        .badge-id {
+            background: var(--crema);
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
         }
-
-        .fa-cut {
-            color: #6a11cb;
-        }
-		
-	
-		
-		.btn-outline-light:hover {
-		    background-color: #ffffff;
-		    color: #2c003e;
-		    border-color: #ffffff;
-		}
     </style>
 </head>
 <body>
 
-	<div class="container mt-5">
-	    <div class="text-center mb-4">
-	        <h2 class="fw-bold text-light">💜 Listado de Clientes Registrados</h2>
-	        <p class="text-muted">Clientes que forman parte de nuestra comunidad de belleza</p>
-	    </div>
+    <div class="container pb-5">
+        <div class="text-center">
+            <h2 class="titulo-seccion">Nuestros Clientes</h2>
+            <p class="subtitulo">Comunidad Estilo & Arte</p>
+            <div class="mx-auto mt-2" style="width: 50px; height: 3px; background: var(--dorado);"></div>
+        </div>
 
-	    <div class="table-responsive rounded shadow">
-			<table class="table table-striped table-bordered bg-white rounded shadow">
-		        <thead class="table-purple text-white text-center">
-		            <tr>
-		                <th>ID</th>
-		                <th>Correo</th>
-		                <th>Nombre</th>
-		                <th>Teléfono</th>
-		                <th>Contraseña</th>
-		                <th>Rol</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		            <tr th:each="cliente : ${listaCliente}">
-		                <td th:text="${cliente.id}"></td>
-		                <td th:text="${cliente.correo}"></td>
-		                <td th:text="${cliente.nombre}"></td>
-		                <td th:text="${cliente.telefono}"></td>
-		                <td th:text="${cliente.contrasena}"></td>
-		                <td th:text="${cliente.rol}"></td>
-		            </tr>
-		        </tbody>
-		    </table>
-	    </div>
+        <div class="custom-table-card">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Correo Electrónico</th>
+                            <th>Nombre Completo</th>
+                            <th>Teléfono</th>
+                            <th>Contraseña</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cliente : ${listaCliente}" class="text-center">
+                            <td><span class="badge-id" th:text="${cliente.id}"></span></td>
+                            <td>
+                                <i class="bi bi-envelope-at me-2 text-muted"></i>
+                                <span th:text="${cliente.correo}"></span>
+                            </td>
+                            <td class="fw-semibold" th:text="${cliente.nombre}"></td>
+                            <td>
+                                <i class="bi bi-whatsapp me-2 text-success"></i>
+                                <span th:text="${cliente.telefono}"></span>
+                            </td>
+                            <td class="text-muted small">
+								<i class="bi bi-shield-lock me-1"></i>
+								<span th:text="${cliente.contrasena}"></span>
+							</td> 
+							<td>
+                                <span class="badge rounded-pill" 
+                                      style="background: #f1f1f1; color: #555; padding: 8px 15px; font-weight: 500;"
+                                      th:text="${cliente.rol}">
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-	    <div class="d-flex justify-content-end mt-4">
-	        <a href="/LoginClientes" class="btn btn-outline-light">
-	            <i class="bi bi-arrow-left"></i> Volver
-	        </a>
-	    </div>
-	</div>
-	
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <div class="d-flex justify-content-center mt-5">
+            <a href="/LoginClientes" class="btn-volver">
+                <i class="bi bi-arrow-left me-2"></i> Volver al Login
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

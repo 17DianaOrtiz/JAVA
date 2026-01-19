@@ -2,113 +2,195 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Estilo & Arte | Iniciar Sesión</title>
+    <title>Estilo & Arte | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap 5 -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #1a1a1a;
+            --crema: #fdfaf5;
+        }
+
         body {
-            background: linear-gradient(to right, #6a11cb, #2575fc); /* morado a azul */
+            background-color: var(--crema);
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', sans-serif;
+            justify-content: center;
+            margin: 0;
         }
 
-        .login-card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 420px;
+        .login-container {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 850px;
+            width: 95%;
+            display: flex;
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 25px;
+        
+        .login-side-image {
+            flex: 1;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                              url('/img/peluqueria.png');
+            background-size: cover;
+            background-position: center;
+            display: none; 
+            position: relative;
         }
 
-        .login-header h2 {
-            font-weight: bold;
-            color: #4b6cb7; /* azul-morado */
-        }
-
-        .btn-primary {
-            background-color: #6a11cb; /* morado */
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #5326a7;
-        }
-
-        .btn-outline-secondary {
-            border-color: #6a11cb;
-            color: #6a11cb;
-        }
-
-        .btn-outline-secondary:hover {
-            background-color: #6a11cb;
+        .login-side-image::after {
+            content: "Área de Gestión";
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
             color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            border-left: 3px solid var(--dorado);
+            padding-left: 15px;
+        }
+
+        /* Lado del Formulario */
+        .login-form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--oscuro);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--oscuro);
+            margin-left: 5px;
         }
 
         .form-control {
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--dorado);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        /* Botones Originales Arreglados */
+        .btn-ingresar {
+            background-color: var(--oscuro);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-ingresar:hover {
+            background-color: var(--dorado);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-secundario {
+            font-size: 0.85rem;
+            color: var(--dorado);
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid transparent;
+            padding: 8px 15px;
             border-radius: 8px;
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #555;
+        .btn-secundario:hover {
+            color: var(--oscuro);
+            background-color: var(--crema);
         }
 
-        .fa-cut {
-            color: #6a11cb;
+        .btn-limpiar {
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 0.75rem;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+
+        .btn-limpiar:hover {
+            color: #dc3545;
+        }
+
+        .action-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .login-side-image { display: block; }
         }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <div class="login-header">
-            <i class="fas fa-cut fa-3x mb-3"></i>
-            <h2>Bienvenido a Estilo & Arte</h2>
-            <p class="text-muted">Inicia sesión para gestionar tus servicios</p>
-        </div>
+    <div class="login-container">
+        <div class="login-side-image"></div>
 
-		<form action="validarlogin" method="post">
-		    <div class="mb-3">
-		        <label for="correo" class="form-label">Usuario</label>
-		        <input type="text" id="correo" name="correo" class="form-control" placeholder="Ej. maria123" required>
-		    </div>
+        <div class="login-form-side">
+            <div class="text-center mb-4">
+                <i class="fas fa-cut fa-2x mb-2" style="color: var(--dorado);"></i>
+                <h2 class="brand-title">Estilo & Arte</h2>
+                <p class="text-muted small">Inicia sesión para gestionar tus servicios</p>
+            </div>
 
-		    <div class="mb-3">
-		        <label for="contrasena" class="form-label">Contraseña</label>
-		        <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="********" required>
-		    </div>
+            <form action="validarlogin" method="post">
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Usuario</label>
+                    <input type="text" id="correo" name="correo" class="form-control" placeholder="Ej. maria123" required>
+                </div>
 
-		    <div class="d-grid gap-2 mt-4">
-		        <button type="submit" class="btn btn-primary">Ingresar</button>
-				<a href="verempleado" class="btn btn-outline-secondary">Ver Empleados</a>
-				<a href="index" class="btn btn-outline-secondary">Regresar</a>
-		        <button type="reset" class="btn btn-danger">Limpiar</button>
-		    </div>
-		</form>
+                <div class="mb-4">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="********" required>
+                </div>
 
-        <div class="footer-text mt-4">
-            <small>&copy; 2025 Estilo & Arte - Tu estilo, nuestra pasión</small>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-ingresar">Ingresar</button>
+                    
+                    <div class="action-links">
+                        <a href="verempleado" class="btn-secundario"><i class="fas fa-users me-1"></i>Ver Empleados</a>
+                        <a href="index" class="btn-secundario"><i class="fas fa-arrow-left me-1"></i>Regresar</a>
+                    </div>
+                    
+                    <button type="reset" class="btn btn-limpiar">Limpiar formulario</button>
+                </div>
+            </form>
+
+            <div class="text-center mt-5">
+                <small style="color: #ccc;">&copy; 2025 Estilo & Arte - Tu estilo, nuestra pasión</small>
+            </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
